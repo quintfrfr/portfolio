@@ -192,7 +192,7 @@
         }
         
         .about-img {
-            width: 100%;
+            width: 75%;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -302,6 +302,294 @@
             color: var(--primary-color);
         }
         
+        /* Gallery Section Styles */
+        .gallery-section {
+            padding: 2rem 0;
+            background-color: #f3f7fc;
+            border-radius: 10px;
+            margin-top: 3rem;
+            overflow: hidden;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-subtitle {
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+
+        .gallery-project-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .gallery-project-tab {
+            padding: 0.5rem 1.5rem;
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            border-radius: 50px;
+            margin: 0 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .gallery-project-tab.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .gallery-project-content {
+            display: none;
+        }
+
+        .gallery-project-content.active {
+            display: block;
+        }
+
+        /* Advanced Grid Layout */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 15px;
+            padding: 0 2rem;
+        }
+
+        /* Default grid placements - will be overridden by JS for special cases */
+        .gallery-grid .gallery-item:nth-child(1) {
+            grid-column: 1 / 5;
+            grid-row: 1 / 3;
+        }
+
+        .gallery-grid .gallery-item:nth-child(2) {
+            grid-column: 5 / 7;
+            grid-row: 1 / 2;
+        }
+
+        .gallery-grid .gallery-item:nth-child(3) {
+            grid-column: 5 / 7;
+            grid-row: 2 / 3;
+        }
+
+        .gallery-grid .gallery-item:nth-child(4) {
+            grid-column: 1 / 7;
+            grid-row: 3 / 4;
+        }
+
+        /* Portrait image specific styles */
+        .gallery-grid .gallery-item.portrait-image {
+            grid-column: 5 / 7;
+            grid-row: 1 / 3;
+        }
+
+        /* Gallery Item Styles */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #e9ecef;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-caption {
+            transform: translateY(0);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: hidden;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-img {
+            display: block;
+            max-width: 100%;
+            max-height: 90vh;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .lightbox-close, .lightbox-prev, .lightbox-next {
+            position: absolute;
+            color: white;
+            font-size: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            top: -60px;
+            right: 0;
+        }
+
+        .lightbox-prev {
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-next {
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .gallery-grid .gallery-item:nth-child(1) {
+                grid-column: 1 / 3;
+                grid-row: 1 / 3;
+            }
+            
+            .gallery-grid .gallery-item:nth-child(2) {
+                grid-column: 3 / 5;
+                grid-row: 1 / 2;
+            }
+            
+            .gallery-grid .gallery-item:nth-child(3) {
+                grid-column: 3 / 5;
+                grid-row: 2 / 3;
+            }
+            
+            .gallery-grid .gallery-item:nth-child(4) {
+                grid-column: 1 / 5;
+                grid-row: 3 / 4;
+            }
+            
+            .gallery-grid .gallery-item.portrait-image {
+                grid-column: 3 / 5;
+                grid-row: 1 / 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 0 1rem;
+            }
+            
+            .gallery-grid .gallery-item:nth-child(1),
+            .gallery-grid .gallery-item:nth-child(2),
+            .gallery-grid .gallery-item:nth-child(3),
+            .gallery-grid .gallery-item:nth-child(4),
+            .gallery-grid .gallery-item.portrait-image {
+                grid-column: span 2;
+                grid-row: auto;
+                height: 250px;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid .gallery-item,
+            .gallery-grid .gallery-item:nth-child(1),
+            .gallery-grid .gallery-item:nth-child(2),
+            .gallery-grid .gallery-item:nth-child(3),
+            .gallery-grid .gallery-item:nth-child(4),
+            .gallery-grid .gallery-item.portrait-image {
+                grid-column: 1;
+                grid-row: auto;
+                height: 200px;
+            }
+            
+            .gallery-project-tab {
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+                padding: 0.4rem 1rem;
+            }
+            
+            .lightbox-content {
+                max-width: 95%;
+            }
+        }
+        
+        /* Others Section */
+        #others {
+            background-color: #f9f9f9;
+        }
+        
         /* Contact Section */
         #contact {
             background-color: #f9f9f9;
@@ -368,6 +656,75 @@
             transform: translateY(-3px);
         }
         
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: hidden;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-img {
+            display: block;
+            max-width: 100%;
+            max-height: 90vh;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+        
+        .lightbox-close, .lightbox-prev, .lightbox-next {
+            position: absolute;
+            color: white;
+            font-size: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .lightbox-close {
+            top: -60px;
+            right: 0;
+        }
+        
+        .lightbox-prev {
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-next {
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -389,6 +746,18 @@
             .about-img {
                 max-width: 400px;
                 margin: 0 auto 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-grid .gallery-item:nth-child(1) {
+                grid-column: 1 / 3;
+            }
+            
+            .gallery-grid .gallery-item:nth-child(4) {
+                grid-column: 1 / 3;
             }
         }
         
@@ -446,6 +815,32 @@
             .contact-info {
                 grid-template-columns: 1fr;
             }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid .gallery-item {
+                grid-column: 1;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-project-tab {
+                margin-bottom: 0.5rem;
+            }
+            
+            .lightbox-content {
+                max-width: 95%;
+            }
         }
     </style>
 </head>
@@ -463,6 +858,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="#projects" class="nav-link">Proyek</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#others" class="nav-link">Lain-lain</a>
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Kontak</a>
@@ -489,7 +887,7 @@
     <section id="about">
         <h2 class="section-title">Tentang Saya</h2>
         <div class="about-content">
-            <img src="/path/to/your-profile-image.jpg" alt="Profile Photo" class="about-img">
+            <img src="PP.jpg" alt="Profile Photo" class="about-img">
             <div class="about-text">
                 <h3>Randy Tafahn</h3>
                 <p>
@@ -521,32 +919,32 @@
         <div class="projects-grid">
             <!-- Project 1 -->
             <div class="project-card">
-                <img src="/portfolio/SI_KKN.png" alt="Project 1" class="project-img">
+                <img src="SI_KKN.png" alt="Project 1" class="project-img">
                 <div class="project-content">
                     <h3 class="project-title">Sistem Informasi KKN</h3>
                     <p class="project-description">
-                        Proyek yang ditujukan untuk mempermudah pengumpulan data bagi mahasiswa KKN dan dosen pembimbing, serta pengolahan data untuk administrator. Membuat dan mengelola website dengan 3 level beserta database yang mencapai 1715 mahasiswa dan 80 dosen dengan 80 desa. Tantangan yang dihadapi adalah banyaknya logika yang menghubungkan antara database satu dengan database lainnya, namun berhasil terselesaikan dengan lebih dari 7 database dengan logika yang saling bertaut.
+                        Website berbasis CodeIgniter dengan 3 level akses dan 1800+ user database. Digunakan untuk pengumpulan tugas mahasiswa, kontrol admin, dan pengawasan dosen pembimbing. Saya bertanggung jawab sebagai pengembang dan pengelola sistem serta database MySQL. Menangani kendala login akibat data pusat yang tidak sesuai, dengan menyelesaikan 80 kasus masalah akun mahasiswa.
                     </p>
                     <div class="project-tags">
                         <span class="project-tag">Web Development</span>
                         <span class="project-tag">Database Management</span>
                         <span class="project-tag">Backend & Frontend</span>
                     </div>
-                    <a href="si-kkn.unsika.ac.id" class="project-link">Kunjungi Website</a>
+                    <a href="#" class="project-link">Kunjungi Website</a>
                 </div>
             </div>
             
             <!-- Project 2 -->
             <div class="project-card">
-                <img src="portfolio/MOOC_KKN" alt="Project 2" class="project-img">
+                <img src="MOOC_KKN.png" alt="Project 2" class="project-img">
                 <div class="project-content">
-                    <h3 class="project-title"></h3>
+                    <h3 class="project-title">LMS SI KKN</h3>
                     <p class="project-description">
-                        Deskripsi tentang proyek website fakultas. Jelaskan kontribusi Anda, fitur-fitur yang diimplementasikan, dan proses pengembangan website tersebut.
+                        Platform pembelajaran mandiri mahasiswa KKN sebelum turun ke lapangan, dilengkapi fitur kuis untuk evaluasi pemahaman. Saya berperan sebagai pengembang, pengelola sistem, sekaligus penanggung jawab troubleshooting kendala pengguna.
                     </p>
                     <div class="project-tags">
-                        <span class="project-tag">Frontend</span>
-                        <span class="project-tag">CMS</span>
+                        <span class="project-tag">WEB Development</span>
+                        <span class="project-tag">Backend & Frontend</span>
                     </div>
                     <a href="#" class="project-link">Kunjungi Website</a>
                 </div>
@@ -554,139 +952,499 @@
             
             <!-- Project 3 -->
             <div class="project-card">
-                <img src="/api/placeholder/600/400" alt="Project 3" class="project-img">
+                <img src="Homepage_KKN.png" alt="Project 3" class="project-img">
                 <div class="project-content">
-                    <h3 class="project-title">Proyek Personal</h3>
+                    <h3 class="project-title">Homepage KKN</h3>
                     <p class="project-description">
-                        Deskripsi tentang proyek personal Anda. Jelaskan inspirasi, proses pengerjaan, dan hasil akhir dari proyek ini. Sertakan teknologi yang digunakan.
+                        Website landing page yang menyajikan informasi penting, template dokumen, dan pengumuman seputar KKN. Saya bertugas sebagai pengembang, pengelola konten, serta penulis naskah informasi di website.
                     </p>
                     <div class="project-tags">
-                        <span class="project-tag">Design</span>
-                        <span class="project-tag">Development</span>
+                        <span class="project-tag">WEB Development</span>
+                        <span class="project-tag">Type writer</span>
                     </div>
-                    <a href="#" class="project-link">Kunjungi Website</a>
+                    <a href="#" class="project-link">Content Manager</a>
                 </div>
             </div>
+        </div>
+        
+        <!-- Consolidated Gallery Section -->
+        <div class="gallery-section" id="project-gallery">
+            <div class="gallery-header">
+                <h3 class="gallery-title">Galeri Proyek</h3>
+                <p class="gallery-subtitle">Lihat screenshot dari berbagai proyek yang telah saya kerjakan</p>
+            </div>
+            
+            <!-- Project Selection Tabs -->
+            <div class="gallery-project-tabs">
+                <button class="gallery-project-tab active" data-project="si-kkn">Sistem Informasi KKN</button>
+                <button class="gallery-project-tab" data-project="lms-kkn">LMS SI KKN</button>
+                <button class="gallery-project-tab" data-project="homepage-kkn">Homepage KKN</button>
+            </div>
+            
+        <!-- Improved Gallery Section for Homepage KKN Gallery -->
+        <div class="gallery-project-content" id="homepage-kkn-gallery">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="Homepage_KKN.png" alt="Homepage Screenshot 1">
+                    <div class="gallery-item-caption">Landing Page</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="jadwal.png" alt="Homepage Screenshot 2">
+                    <div class="gallery-item-caption">Banner Info</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="faq.png" alt="Homepage Screenshot 3">
+                    <div class="gallery-item-caption">FAQ Section</div>
+                </div>
+                <div class="gallery-item portrait-image">
+                    <img src="news.png" alt="Homepage Screenshot 5">
+                    <div class="gallery-item-caption">Halaman Berita</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Improved Gallery Section for SI KKN Gallery -->
+        <div class="gallery-project-content active" id="si-kkn-gallery">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="Dashboard.png" alt="SI KKN Screenshot 1">
+                    <div class="gallery-item-caption">Halaman Dashboard</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="login.png" alt="SI KKN Screenshot 2">
+                    <div class="gallery-item-caption">Halaman Login</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="control.png" alt="SI KKN Screenshot 3">
+                    <div class="gallery-item-caption">Panel Admin</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="submission.jpg" alt="SI KKN Screenshot 4">
+                    <div class="gallery-item-caption">Pengumpulan Tugas</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Improved Gallery Section for LMS KKN Gallery -->
+        <div class="gallery-project-content" id="lms-kkn-gallery">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="LMS.png" alt="LMS Screenshot 1">
+                    <div class="gallery-item-caption">Homepage LMS</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="course.png" alt="LMS Screenshot 2">
+                    <div class="gallery-item-caption">Course Material</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="quiz.png" alt="LMS Screenshot 3">
+                    <div class="gallery-item-caption">Quiz Interface</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Panduan.png" alt="LMS Screenshot 4">
+                    <div class="gallery-item-caption">Panduan Mahasiswa</div>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Kontak</h2>
-        <p>Jika Anda tertarik untuk berkolaborasi atau memiliki pertanyaan, jangan ragu untuk menghubungi saya melalui kontak di bawah ini:</p>
+<!-- Others Section -->
+<section id="others">
+    <h2 class="section-title">Pengalaman Website Lainnya</h2>
+    <div class="projects-grid">
+        <!-- Website 1 -->
+        <div class="project-card">
+            <img src="ft.png" alt="FT UNSIKA Website" class="project-img">
+            <div class="project-content">
+                <h3 class="project-title">Website Resmi Fakultas Teknik UNSIKA</h3>
+                <p class="project-description">
+                    Terlibat dalam pengelolaan dan pemeliharaan website resmi Fakultas Teknik Universitas Singaperbangsa Karawang. Bertanggung jawab untuk memperbarui konten, mengelola pengumuman, dan memastikan fungsionalitas website tetap optimal untuk kebutuhan akademik dan administratif fakultas.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">Content Management</span>
+                    <span class="project-tag">Website Maintenance</span>
+                    <span class="project-tag">Technical Support</span>
+                </div>
+                <a href="https://ft.unsika.ac.id/" class="project-link">Kunjungi Website</a>
+            </div>
+        </div>
         
-        <div class="contact-info">
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <div class="contact-details">
-                    <h3>Email</h3>
-                    <p>email@example.com</p>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">📱</div>
-                <div class="contact-details">
-                    <h3>Telepon</h3>
-                    <p>+62 123 4567 890</p>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">🌐</div>
-                <div class="contact-details">
-                    <h3>LinkedIn</h3>
-                    <p>linkedin.com/in/username</p>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">🐙</div>
-                <div class="contact-details">
-                    <h3>GitHub</h3>
-                    <p>github.com/username</p>
+        <!-- Website 2 -->
+        <div class="project-card">
+            <img src="Repository.png" alt="Repository Teknik Kimia" class="project-img">
+            <div class="project-content">
+                <h3 class="project-title">Repository Teknik Kimia</h3>
+                <p class="project-description">
+                    Sedang mengembangkan platform repository untuk program studi Teknik Kimia yang akan menjadi pusat penyimpanan dan akses untuk karya ilmiah, penelitian, dan materi pembelajaran jurusan. Platform ini dirancang untuk memudahkan mahasiswa dan dosen dalam berbagi dan mengakses sumber daya akademik relevan.
+                </p>
+                <div class="project-tags">
+                    <span class="project-tag">In Development</span>
+                    <span class="project-tag">Database Design</span>
+                    <span class="project-tag">Content Repository</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="#" class="social-link">FB</a>
-            <a href="#" class="social-link">IG</a>
-            <a href="#" class="social-link">LI</a>
-            <a href="#" class="social-link">GH</a>
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="Lightbox Image" class="lightbox-img" id="lightbox-img">
+            <div class="lightbox-close" id="lightbox-close">×</div>
+            <div class="lightbox-prev" id="lightbox-prev">❮</div>
+            <div class="lightbox-next" id="lightbox-next">❯</div>
         </div>
-        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector(".hamburger");
-        const navMenu = document.querySelector(".nav-menu");
+<!-- Contact Section -->
+<section id="contact">
+    <h2 class="section-title">Kontak</h2>
+    <p>Jika Anda tertarik untuk berkolaborasi atau memiliki pertanyaan, jangan ragu untuk menghubungi saya melalui kontak di bawah ini:</p>
+    
+    <div class="contact-info">
+        <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-details">
+                <h3>Email</h3>
+                <p>2310631230022@student.unsika.ac.id</p>
+            </div>
+        </div>
         
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
+        <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-details">
+                <h3>Telepon</h3>
+                <p>+62-889-7556-8109</p>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div class="contact-details">
+                <h3>Alamat</h3>
+                <p>Fakultas Teknik, Universitas Singaperbangsa Karawang</p>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div class="contact-details">
+                <h3>Media Sosial</h3>
+                <p>Instagram: @yesmeyouknowho</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="social-links">
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">LI</a>
+        <a href="#" class="social-link">GH</a>
+        <a href="#" class="social-link">TW</a>
+    </div>
+    <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+</footer>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+        <img src="" alt="Lightbox Image" class="lightbox-img" id="lightbox-img">
+        <div class="lightbox-close" id="lightbox-close">×</div>
+        <div class="lightbox-prev" id="lightbox-prev">❮</div>
+        <div class="lightbox-next" id="lightbox-next">❯</div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+// Complete JavaScript for Gallery Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Navigation
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
         });
-        
-        document.querySelectorAll(".nav-link").forEach(link => 
-            link.addEventListener("click", () => {
-                hamburger.classList.remove("active");
-                navMenu.classList.remove("active");
-            })
-        );
-        
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 70,
+                behavior: 'smooth'
             });
         });
+    });
+    
+    // Shrink navbar on scroll
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.padding = '5px 0';
+        } else {
+            navbar.style.padding = '10px 0';
+        }
+    });
+    
+    // Handle special image ratios and optimize gallery layout
+    const handleSpecialImageRatios = function() {
+        // Get all galleries
+        const galleries = document.querySelectorAll('.gallery-project-content');
         
-        // Scroll Effects
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.padding = '0.5rem 0';
-                navbar.style.backgroundColor = 'rgba(58, 79, 99, 0.95)';
-            } else {
-                navbar.style.padding = '1rem 0';
-                navbar.style.backgroundColor = 'var(--primary-color)';
+        galleries.forEach(gallery => {
+            const galleryItems = gallery.querySelectorAll('.gallery-item');
+            
+            // Reset custom styles first to avoid conflicts when switching tabs
+            galleryItems.forEach(item => {
+                item.style.gridColumn = "";
+                item.style.gridRow = "";
+            });
+            
+            // Identify special images and set appropriate classes/styles
+            galleryItems.forEach((item, index) => {
+                const img = item.querySelector('img');
+                const src = img.getAttribute('src');
+                
+                // Special handling for news.jpg/png (portrait image)
+                if (src.includes('news.png') || src.includes('news.jpg')) {
+                    item.classList.add('portrait-image');
+                    
+                    // In portrait layout, rearrange other images
+                    const parentGrid = item.closest('.gallery-grid');
+                    
+                    // If viewport is not mobile
+                    if (window.innerWidth > 768) {
+                        // Place portrait image at right column spanning two rows
+                        item.style.gridColumn = "5 / 7";
+                        item.style.gridRow = "1 / 3";
+                        
+                        // Adjust other items in the grid
+                        if (index !== 0) { // If not the first item
+                            const firstItem = parentGrid.querySelector('.gallery-item:nth-child(1)');
+                            if (firstItem && firstItem !== item) {
+                                firstItem.style.gridColumn = "1 / 5";
+                                firstItem.style.gridRow = "1 / 3";
+                            }
+                        }
+                        
+                        // Find remaining items and adjust their positions
+                        const otherItems = Array.from(parentGrid.querySelectorAll('.gallery-item:not(.portrait-image)'));
+                        
+                        // If there are other non-portrait items, adjust their layout
+                        if (otherItems.length > 0) {
+                            if (otherItems[0]) {
+                                otherItems[0].style.gridColumn = "1 / 5";
+                                otherItems[0].style.gridRow = "1 / 3";
+                            }
+                            
+                            if (otherItems[1]) {
+                                otherItems[1].style.gridColumn = "1 / 3";
+                                otherItems[1].style.gridRow = "3 / 4";
+                            }
+                            
+                            if (otherItems[2]) {
+                                otherItems[2].style.gridColumn = "3 / 7";
+                                otherItems[2].style.gridRow = "3 / 4";
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Analyze and adjust all images based on their natural dimensions
+            galleryItems.forEach(item => {
+                const img = item.querySelector('img');
+                
+                // Function to handle image dimensions after loading
+                const handleImageLoad = function() {
+                    const imgWidth = this.naturalWidth;
+                    const imgHeight = this.naturalHeight;
+                    const ratio = imgWidth / imgHeight;
+                    
+                    // Add data attributes for debugging
+                    img.setAttribute('data-ratio', ratio.toFixed(2));
+                    
+                    // Standard landscape (16:9 or similar)
+                    if (ratio > 1.3) {
+                        img.style.objectFit = 'cover';
+                    } 
+                    // Square or nearly square
+                    else if (ratio > 0.8 && ratio <= 1.3) {
+                        img.style.objectFit = 'cover';
+                    }
+                    // Portrait
+                    else if (ratio < 0.8) {
+                        img.style.objectFit = 'cover';
+                        item.classList.add('portrait-image');
+                    }
+                };
+                
+                // Set up the load event handler
+                img.addEventListener('load', handleImageLoad);
+                
+                // Trigger for already cached images
+                if (img.complete) {
+                    img.dispatchEvent(new Event('load'));
+                }
+            });
+        });
+    };
+    
+    // Initialize gallery layout
+    handleSpecialImageRatios();
+    
+    // Gallery Tab Switching
+    const projectTabs = document.querySelectorAll('.gallery-project-tab');
+    const projectContents = document.querySelectorAll('.gallery-project-content');
+    
+    projectTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and contents
+            projectTabs.forEach(t => t.classList.remove('active'));
+            projectContents.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Get project ID and activate corresponding content
+            const projectId = tab.getAttribute('data-project');
+            document.getElementById(`${projectId}-gallery`).classList.add('active');
+            
+            // Re-initialize layout after tab switch (with slight delay to ensure DOM update)
+            setTimeout(handleSpecialImageRatios, 50);
+        });
+    });
+    
+    // Lightbox Gallery
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    
+    let currentImageIndex = 0;
+    let currentGallery = [];
+    
+    // Open lightbox when clicking on gallery image
+    galleryItems.forEach((item) => {
+        item.addEventListener('click', () => {
+            // Get all images in the current active gallery
+            const activeGallery = document.querySelector('.gallery-project-content.active');
+            currentGallery = Array.from(activeGallery.querySelectorAll('.gallery-item img'));
+            
+            // Find index of clicked image in current gallery
+            currentImageIndex = currentGallery.indexOf(item);
+            
+            // Show image in lightbox
+            lightboxImg.src = item.src;
+            lightbox.classList.add('active');
+            
+            // Disable scroll on body
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    // Close lightbox
+    lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+    
+    // Navigate to previous image
+    lightboxPrev.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+        lightboxImg.src = currentGallery[currentImageIndex].src;
+    });
+    
+    // Navigate to next image
+    lightboxNext.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+        lightboxImg.src = currentGallery[currentImageIndex].src;
+    });
+    
+    // Close lightbox when clicking outside image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Keyboard navigation for lightbox
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        } else if (e.key === 'ArrowLeft') {
+            currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+            lightboxImg.src = currentGallery[currentImageIndex].src;
+        } else if (e.key === 'ArrowRight') {
+            currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+            lightboxImg.src = currentGallery[currentImageIndex].src;
+        }
+    });
+    
+    // Responsive image handling on window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            handleSpecialImageRatios();
+        }, 250);
+    });
+    
+    // Form submission (prevent default for demo)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah dikirim.');
+            contactForm.reset();
+        });
+    }
+    
+    // Check viewport position and add animation classes
+    window.addEventListener('scroll', () => {
+        const fadeElements = document.querySelectorAll('.project-card, .about-content, .contact-info');
+        
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
             }
-            
-            // Reveal elements on scroll
-            document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight * 0.75) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
         });
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set initial opacity and transform for sections
-            document.querySelectorAll('section').forEach(section => {
-                if (section.id !== 'home') {
-                    section.style.opacity = '0';
-                    section.style.transform = 'translateY(20px)';
-                    section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                }
-            });
-        });
-    </script>
+    });
+    
+    // Initialize fade effects
+    document.querySelectorAll('.project-card, .about-content, .contact-info').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+});
+</script>
 </body>
 </html>
